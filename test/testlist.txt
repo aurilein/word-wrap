@@ -1,0 +1,9 @@
+
+* "irgendeintext", 78 -> "irgendeintext"
+* "irgendeintext", -1 -> exception
+* "", 5 -> ""
+* "irgendeintext", 3 -> "irg\nend\nein\ntex\nt"
+* "katze", 3 -> "kat\nze"
+* "ich programmiere etwas", 8 -> "ich\nprogramm\niere\netwas"
+* "ich programmiere", 78 -> "ich programmiere"
+* "ich programmiere", 13 -> "ich\nprogrammiere"
