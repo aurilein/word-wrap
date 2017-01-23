@@ -3,20 +3,29 @@ namespace LAOLA1;
 
 class WordWrapperTest extends \PHPUnit_Framework_TestCase
 {
+    /** @var WordWrapper */
+    private $wordWrapper;
+
+    /**
+     * @before
+     */
+    public function initWordWrapper()
+    {
+        $this->wordWrapper = new WordWrapper();
+    }
+
     /**
      * @test
      * @expectedException \InvalidArgumentException
      */
     public function shouldThrowExceptionOnNegativeLineLength()
     {
-        $wordWrapper = new WordWrapper();
-        $wordWrapper->wrap("", -1);
+        $this->wordWrapper->wrap("", -1);
     }
 
     /** @test */
     public function shouldReturnEmptyText()
     {
-        $wordWrapper = new WordWrapper();
-        $this->assertEmpty($wordWrapper->wrap("", 5));
+        $this->assertEmpty($this->wordWrapper->wrap("", 5));
     }
 }
