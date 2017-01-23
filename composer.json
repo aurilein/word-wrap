@@ -7,6 +7,11 @@
             "name": "Team 22."
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "LAOLA1\\": "src\/LAOLA1\/"
+        }
+    },
     "require-dev": {
         "phpunit/phpunit": "4.8.*"
     }
