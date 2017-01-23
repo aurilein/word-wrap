@@ -3,16 +3,8 @@ namespace LAOLA1;
 
 class WordWrapper
 {
-
-    /**
-     * WordWrapper constructor.
-     */
-    public function __construct()
+    public function wrap($text, $lineLength)
     {
-    }
-
-    public function wrap($string, $param)
-    {
-        throw new \InvalidArgumentException("Ungültige Line Length ".$param);
+        throw new \InvalidArgumentException("Invalid line length " . $lineLength);
     }
 }
