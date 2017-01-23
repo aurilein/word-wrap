@@ -34,4 +34,10 @@ class WordWrapperTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals("Kat\nze", $this->wordWrapper->wrap("Katze", 3));
     }
+
+    /** @test */
+    public function shouldSplitWordLongerThanLineLengthMultipleTimes()
+    {
+        $this->assertEquals("irg\nend\nein\ntex\nt", $this->wordWrapper->wrap("irgendeintext", 3));
+    }
 }
