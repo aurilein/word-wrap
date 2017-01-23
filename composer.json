@@ -1,0 +1,13 @@
+{
+    "name": "codecop/CodingDojo-PHP",
+    "description": "WordWrap Kata",
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Team 22."
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "4.8.*"
+    }
+}
