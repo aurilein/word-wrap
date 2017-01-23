@@ -9,12 +9,19 @@ class WordWrapper
             throw new \InvalidArgumentException("Invalid line length " . $lineLength);
         }
 
-        if (strlen($text) > $lineLength) {
-
-            return substr($text, 0, $lineLength) . "\n" . $this->wrap(substr($text, $lineLength), $lineLength);
+        if (strlen($text) <= $lineLength) {
+            return $text;
         }
 
-        return $text;
+        return $this->generateLines($text, $lineLength);
+    }
+
+    private function generateLines($text, $lineLength)
+    {
+        $firstLine = substr($text, 0, $lineLength);
+        $remainingText = substr($text, $lineLength);
+        $followingLines = $this->wrap($remainingText, $lineLength);
+        return $firstLine . "\n" . $followingLines;
     }
 
 }
