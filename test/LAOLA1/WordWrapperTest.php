@@ -28,4 +28,10 @@ class WordWrapperTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEmpty($this->wordWrapper->wrap("", 5));
     }
+
+    /** @test */
+    public function shouldSplitWordLongerThanLineLength()
+    {
+        $this->assertEquals("Kat\nze", $this->wordWrapper->wrap("Katze", 3));
+    }
 }
