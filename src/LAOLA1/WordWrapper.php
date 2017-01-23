@@ -13,6 +13,6 @@ class WordWrapper
 
     public function wrap($string, $param)
     {
-
+        throw new \InvalidArgumentException("Ungültige Line Length ".$param);
     }
 }
