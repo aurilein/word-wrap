@@ -5,6 +5,9 @@ class WordWrapper
 {
     public function wrap($text, $lineLength)
     {
-        throw new \InvalidArgumentException("Invalid line length " . $lineLength);
+        if($lineLength < 0)  {
+            throw new \InvalidArgumentException("Invalid line length " . $lineLength);
+        }
+        return $text;
     }
 }

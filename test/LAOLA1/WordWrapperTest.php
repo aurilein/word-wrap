@@ -12,4 +12,11 @@ class WordWrapperTest extends \PHPUnit_Framework_TestCase
         $wordWrapper = new WordWrapper();
         $wordWrapper->wrap("", -1);
     }
+
+    /** @test */
+    public function shouldReturnEmptyText()
+    {
+        $wordWrapper = new WordWrapper();
+        $this->assertEmpty($wordWrapper->wrap("", 5));
+    }
 }
