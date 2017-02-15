@@ -19,12 +19,12 @@ class WordWrapper
     private function getWrappedLines($text, $lineLength)
     {
         $firstLine = substr($text, 0, $lineLength);
-        $spacePos = strrpos($firstLine,' ');
+        $spacePos = strrpos($firstLine, ' ');
         $containsSpace = $spacePos !== false;
 
         if ($containsSpace) {
             $firstLine = substr($text, 0, $spacePos);
-            $remainingText = substr($text, $spacePos+1);
+            $remainingText = substr($text, $spacePos + 1);
         } else {
             $remainingText = substr($text, $lineLength);
         }

@@ -4,8 +4,5 @@
 
 
 * "ich programmiere etwas", 8 -> "ich\nprogramm\niere\netwas"
-* "ich programmiere", 78 -> "ich programmiere"
-
 * "irgendeintext", "abc" -> exception
 * \n in String?
-
