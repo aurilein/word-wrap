@@ -46,4 +46,11 @@ class WordWrapperTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals("ich\nprogrammiere", $this->wordWrapper->wrap("ich programmiere", 13));
     }
+
+    /** @test */
+    public function shouldSplitPhraseLongerThanLineLengthAtLastWhitespace()
+    {
+        $this->assertEquals("ich programmiere\njetzt weiter",
+            $this->wordWrapper->wrap("ich programmiere jetzt weiter", 18));
+    }
 }
