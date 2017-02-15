@@ -40,4 +40,10 @@ class WordWrapperTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals("irg\nend\nein\ntex\nt", $this->wordWrapper->wrap("irgendeintext", 3));
     }
+
+    /** @test */
+    public function shouldSplitPhraseLongerThanLineLengthAtWhitespace()
+    {
+        $this->assertEquals("ich\nprogrammiere", $this->wordWrapper->wrap("ich programmiere", 13));
+    }
 }
