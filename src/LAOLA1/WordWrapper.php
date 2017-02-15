@@ -10,7 +10,8 @@ class WordWrapper
         }
 
         $text = trim($text);
-        if (strlen($text) <= $lineLength) {
+        $fitsIntoLine = strlen($text) <= $lineLength;
+        if ($fitsIntoLine) {
             return $text;
         }
 
@@ -19,7 +20,6 @@ class WordWrapper
 
     private function getWrappedLines($text, $lineLength)
     {
-
         $firstLine = substr($text, 0, $lineLength);
         $spacePos = strrpos($firstLine, ' ');
         $containsSpace = $spacePos !== false;
