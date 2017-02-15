@@ -13,15 +13,14 @@ class WordWrapper
             return $text;
         }
 
-        return $this->generateLines($text, $lineLength);
+        return $this->getWrappedLines($text, $lineLength);
     }
 
-    private function generateLines($text, $lineLength)
+    private function getWrappedLines($text, $lineLength)
     {
         $firstLine = substr($text, 0, $lineLength);
         $remainingText = substr($text, $lineLength);
         $followingLines = $this->wrap($remainingText, $lineLength);
         return $firstLine . "\n" . $followingLines;
     }
-
 }
