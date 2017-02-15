@@ -5,20 +5,32 @@ class WordWrapper
 {
     public function wrap($text, $lineLength)
     {
-        if ($lineLength < 0) {
-            throw new \InvalidArgumentException("Invalid line length " . $lineLength);
-        }
+        $this->validateLineLength($lineLength);
 
         $text = trim($text);
-        $fitsIntoLine = strlen($text) <= $lineLength;
-        if ($fitsIntoLine) {
+        if ($this->fitsIntoLine($text, $lineLength)) {
             return $text;
         }
 
-        return $this->getWrappedLines($text, $lineLength);
+        list($firstLine, $remainingText) = $this->splitFirstLine($text, $lineLength);
+        $followingLines = $this->wrap($remainingText, $lineLength);
+
+        return $firstLine . "\n" . $followingLines;
     }
 
-    private function getWrappedLines($text, $lineLength)
+    private function validateLineLength($lineLength)
+    {
+        if ($lineLength < 0) {
+            throw new \InvalidArgumentException("Invalid line length " . $lineLength);
+        }
+    }
+
+    private function fitsIntoLine($text, $lineLength)
+    {
+        return strlen($text) <= $lineLength;
+    }
+
+    private function splitFirstLine($text, $lineLength)
     {
         $firstLine = substr($text, 0, $lineLength);
         $spacePos = strrpos($firstLine, ' ');
@@ -31,8 +43,6 @@ class WordWrapper
             $remainingText = substr($text, $lineLength);
         }
 
-        $followingLines = $this->wrap($remainingText, $lineLength);
-
-        return $firstLine . "\n" . $followingLines;
+        return array($firstLine, $remainingText);
     }
 }
