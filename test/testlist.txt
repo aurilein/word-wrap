@@ -6,3 +6,5 @@
 * "ich programmiere etwas", 8 -> "ich\nprogramm\niere\netwas"
 * "irgendeintext", "abc" -> exception
 * \n in String?
+* "ich  bin", 5 -> "ich\nbin"
+* " ich", 3 -> "ich"

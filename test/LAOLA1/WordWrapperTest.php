@@ -50,13 +50,27 @@ class WordWrapperTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function shouldSplitPhraseLongerThanLineLengthAtLastWhitespace()
     {
-        $this->assertEquals("ich programmiere\njetzt weiter",
-            $this->wordWrapper->wrap("ich programmiere jetzt weiter", 18));
+        $this->assertEquals(
+            "ich programmiere\njetzt weiter",
+            $this->wordWrapper->wrap("ich programmiere jetzt weiter", 18)
+        );
     }
 
     /** @test */
     public function shouldNotSplitIfPhraseContainsSpaceAndIsShorterThanLineLength()
     {
-        $this->assertEquals("ich ein",  $this->wordWrapper->wrap("ich ein", 13));
+        $this->assertEquals("ich ein", $this->wordWrapper->wrap("ich ein", 13));
+    }
+
+    /** @test */
+    public function shouldSplitIfSpaceIsDirectlyBeforeLineLength()
+    {
+        $this->assertEquals("ich\nbin", $this->wordWrapper->wrap("ich bin", 4));
+    }
+
+    /** @test */
+    public function shouldRemoveSpaceDirectlyAfterLineLength()
+    {
+        $this->assertEquals("ich\nbin", $this->wordWrapper->wrap("ich bin", 3));
     }
 }

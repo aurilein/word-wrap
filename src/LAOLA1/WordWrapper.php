@@ -9,6 +9,7 @@ class WordWrapper
             throw new \InvalidArgumentException("Invalid line length " . $lineLength);
         }
 
+        $text = trim($text);
         if (strlen($text) <= $lineLength) {
             return $text;
         }
@@ -18,6 +19,7 @@ class WordWrapper
 
     private function getWrappedLines($text, $lineLength)
     {
+
         $firstLine = substr($text, 0, $lineLength);
         $spacePos = strrpos($firstLine, ' ');
         $containsSpace = $spacePos !== false;
