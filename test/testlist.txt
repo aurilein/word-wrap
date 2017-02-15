@@ -8,3 +8,5 @@
 
 * "irgendeintext", "abc" -> exception
 * \n in String?
+
+* testfall erste zeile mehrere spaces

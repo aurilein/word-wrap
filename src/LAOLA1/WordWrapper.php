@@ -18,16 +18,19 @@ class WordWrapper
 
     private function getWrappedLines($text, $lineLength)
     {
-        $firstLine = substr($text, 0, $lineLength);
-        $spacePos = strpos($firstLine,' ');
-        if ($spacePos !== false) {
+        $spacePos = strpos($text,' ');
+        $containsSpace = $spacePos !== false;
+
+        if ($containsSpace) {
             $firstLine = substr($text, 0, $spacePos);
             $remainingText = substr($text, $spacePos+1);
         } else {
+            $firstLine = substr($text, 0, $lineLength);
             $remainingText = substr($text, $lineLength);
         }
 
         $followingLines = $this->wrap($remainingText, $lineLength);
+
         return $firstLine . "\n" . $followingLines;
     }
 }
