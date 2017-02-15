@@ -12,66 +12,66 @@ class WordWrapperTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldThrowExceptionOnNegativeLineLength()
     {
-        $this->wordWrapper = new WordWrapper();
-        $this->wordWrapper->wrap("", -1);
+        $this->wordWrapper = new WordWrapper(-1);
+        $this->wordWrapper->wrap("");
     }
 
     /** @test */
     public function shouldReturnEmptyText()
     {
-        $this->wordWrapper = new WordWrapper();
-        $this->assertEmpty($this->wordWrapper->wrap("", 5));
+        $this->wordWrapper = new WordWrapper(5);
+        $this->assertEmpty($this->wordWrapper->wrap(""));
     }
 
     /** @test */
     public function shouldSplitWordLongerThanLineLength()
     {
-        $this->wordWrapper = new WordWrapper();
-        $this->assertEquals("Kat\nze", $this->wordWrapper->wrap("Katze", 3));
+        $this->wordWrapper = new WordWrapper(3);
+        $this->assertEquals("Kat\nze", $this->wordWrapper->wrap("Katze"));
     }
 
     /** @test */
     public function shouldSplitWordLongerThanLineLengthMultipleTimes()
     {
-        $this->wordWrapper = new WordWrapper();
-        $this->assertEquals("irg\nend\nein\ntex\nt", $this->wordWrapper->wrap("irgendeintext", 3));
+        $this->wordWrapper = new WordWrapper(3);
+        $this->assertEquals("irg\nend\nein\ntex\nt", $this->wordWrapper->wrap("irgendeintext"));
     }
 
     /** @test */
     public function shouldSplitPhraseLongerThanLineLengthAtWhitespace()
     {
-        $this->wordWrapper = new WordWrapper();
-        $this->assertEquals("ich\nprogrammiere", $this->wordWrapper->wrap("ich programmiere", 13));
+        $this->wordWrapper = new WordWrapper(13);
+        $this->assertEquals("ich\nprogrammiere", $this->wordWrapper->wrap("ich programmiere"));
     }
 
     /** @test */
     public function shouldSplitPhraseLongerThanLineLengthAtLastWhitespace()
     {
-        $this->wordWrapper = new WordWrapper();
+        $this->wordWrapper = new WordWrapper(18);
         $this->assertEquals(
             "ich programmiere\njetzt weiter",
-            $this->wordWrapper->wrap("ich programmiere jetzt weiter", 18)
+            $this->wordWrapper->wrap("ich programmiere jetzt weiter")
         );
     }
 
     /** @test */
     public function shouldNotSplitIfPhraseContainsSpaceAndIsShorterThanLineLength()
     {
-        $this->wordWrapper = new WordWrapper();
-        $this->assertEquals("ich ein", $this->wordWrapper->wrap("ich ein", 13));
+        $this->wordWrapper = new WordWrapper(13);
+        $this->assertEquals("ich ein", $this->wordWrapper->wrap("ich ein"));
     }
 
     /** @test */
     public function shouldSplitIfSpaceIsDirectlyBeforeLineLength()
     {
-        $this->wordWrapper = new WordWrapper();
-        $this->assertEquals("ich\nbin", $this->wordWrapper->wrap("ich bin", 4));
+        $this->wordWrapper = new WordWrapper(4);
+        $this->assertEquals("ich\nbin", $this->wordWrapper->wrap("ich bin"));
     }
 
     /** @test */
     public function shouldRemoveSpaceDirectlyAfterLineLength()
     {
-        $this->wordWrapper = new WordWrapper();
-        $this->assertEquals("ich\nbin", $this->wordWrapper->wrap("ich bin", 3));
+        $this->wordWrapper = new WordWrapper(3);
+        $this->assertEquals("ich\nbin", $this->wordWrapper->wrap("ich bin"));
     }
 }

@@ -10,9 +10,8 @@ class WordWrapper
         $this->lineLength = $lineLength;
     }
 
-    public function wrap($text, $lineLength)
+    public function wrap($text)
     {
-        $this->lineLength = $lineLength;
         $this->validateLineLength();
 
         $text = trim($text);
@@ -21,7 +20,7 @@ class WordWrapper
         }
 
         list($firstLine, $remainingText) = $this->splitFirstLine($text);
-        $followingLines = $this->wrap($remainingText, $this->lineLength);
+        $followingLines = $this->wrap($remainingText);
 
         return $firstLine . "\n" . $followingLines;
     }
