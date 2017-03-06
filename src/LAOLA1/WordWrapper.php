@@ -29,7 +29,7 @@ class WordWrapper
             return $text;
         }
 
-        list($firstLine, $remainingText) = $this->splitFirstLine($text);
+        list($firstLine, $remainingText) = $this->splitLine($text);
         $followingLines = $this->wrap($remainingText);
 
         return trim($firstLine) . "\n" . $followingLines;
@@ -40,17 +40,23 @@ class WordWrapper
         return strlen($text) <= $this->lineLength;
     }
 
-    private function splitFirstLine($text)
+    private function splitLine($text)
+    {
+        $splitPosition = $this->findNextSplitPosition($text);
+
+        return $this->splitAt($text, $splitPosition);
+    }
+
+    private function findNextSplitPosition($text)
     {
         $firstLine = substr($text, 0, $this->lineLength);
         $lastSpacePosInLine = strrpos($firstLine, ' ');
-        $containsSpace = $lastSpacePosInLine !== false;
 
-        if ($containsSpace) {
-            return $this->splitAt($text, $lastSpacePosInLine);
+        if ($lastSpacePosInLine) {
+            return $lastSpacePosInLine;
         }
 
-        return $this->splitAt($text, $this->lineLength);
+        return $this->lineLength;
     }
 
     private function splitAt($text, $position)
