@@ -16,6 +16,16 @@ class WordWrapperTest extends \PHPUnit_Framework_TestCase
         $this->wordWrapper->wrap("");
     }
 
+    /**
+     * @test
+     * @expectedException \InvalidArgumentException
+     */
+    public function shouldThrowExceptionOnInvalidLineLengthType()
+    {
+        $this->wordWrapper = new WordWrapper("abc");
+        $this->wordWrapper->wrap("");
+    }
+
     /** @test */
     public function shouldReturnEmptyForEmptyText()
     {

@@ -27,8 +27,10 @@ class WordWrapper
 
     private function validateLineLength()
     {
-        if ($this->lineLength < 0) {
+        if (!is_numeric($this->lineLength)) {
             throw new \InvalidArgumentException("Invalid line length " . $this->lineLength);
+        } elseif ($this->lineLength < 0) {
+            throw new \InvalidArgumentException("Negative line length " . $this->lineLength);
         }
     }
 
