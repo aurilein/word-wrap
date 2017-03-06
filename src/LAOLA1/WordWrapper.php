@@ -8,12 +8,11 @@ class WordWrapper
     public function __construct($lineLength = -1)
     {
         $this->lineLength = $lineLength;
+        $this->validateLineLength();
     }
 
     public function wrap($text)
     {
-        $this->validateLineLength();
-
         $text = trim($text);
         if ($this->fitsIntoLine($text)) {
             return $text;

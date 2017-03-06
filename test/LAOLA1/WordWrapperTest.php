@@ -12,8 +12,7 @@ class WordWrapperTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldThrowExceptionOnNegativeLineLength()
     {
-        $this->wordWrapper = new WordWrapper(-1);
-        $this->wordWrapper->wrap("");
+        new WordWrapper(-1);
     }
 
     /**
@@ -22,8 +21,7 @@ class WordWrapperTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldThrowExceptionOnInvalidLineLengthType()
     {
-        $this->wordWrapper = new WordWrapper("abc");
-        $this->wordWrapper->wrap("");
+        new WordWrapper("abc");
     }
 
     /** @test */
