@@ -74,4 +74,11 @@ class WordWrapperTest extends \PHPUnit_Framework_TestCase
         $this->wordWrapper = new WordWrapper(3);
         $this->assertEquals("ich\nbin", $this->wordWrapper->wrap("ich bin"));
     }
+
+    /** @test */
+    public function shouldSplitOnSpaceBeforeWordLongerThanLineLength()
+    {
+        $this->wordWrapper = new WordWrapper(8);
+        $this->assertEquals("ich\nprogramm\niere\netwas", $this->wordWrapper->wrap("ich programmiere etwas"));
+    }
 }
