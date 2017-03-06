@@ -17,7 +17,7 @@ class WordWrapperTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function shouldReturnEmptyText()
+    public function shouldReturnEmptyForEmptyText()
     {
         $this->wordWrapper = new WordWrapper(5);
         $this->assertEmpty($this->wordWrapper->wrap(""));
