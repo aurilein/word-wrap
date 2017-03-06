@@ -1,5 +1,5 @@
 <?php
-namespace LAOLA1;
+namespace Layout;
 
 class WordWrapperTest extends \PHPUnit_Framework_TestCase
 {

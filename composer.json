@@ -9,7 +9,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "LAOLA1\\": "src\/LAOLA1\/"
+            "Layout\\": "src\/Layout\/"
         }
     },
     "require-dev": {

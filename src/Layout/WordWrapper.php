@@ -1,5 +1,5 @@
 <?php
-namespace LAOLA1;
+namespace Layout;
 
 class WordWrapper
 {
