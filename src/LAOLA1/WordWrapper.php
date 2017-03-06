@@ -21,7 +21,7 @@ class WordWrapper
         list($firstLine, $remainingText) = $this->splitFirstLine($text);
         $followingLines = $this->wrap($remainingText);
 
-        return $firstLine . "\n" . $followingLines;
+        return trim($firstLine) . "\n" . $followingLines;
     }
 
     private function validateLineLength()

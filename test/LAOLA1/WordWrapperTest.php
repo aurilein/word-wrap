@@ -84,6 +84,13 @@ class WordWrapperTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
+    public function shouldRemoveExtraSpaceOnLineEnd()
+    {
+        $this->wordWrapper = new WordWrapper(8);
+        $this->assertEquals("two\nspaces", $this->wordWrapper->wrap("two  spaces"));
+    }
+
+    /** @test */
     public function shouldSplitOnSpaceBeforeWordLongerThanLineLength()
     {
         $this->wordWrapper = new WordWrapper(8);
