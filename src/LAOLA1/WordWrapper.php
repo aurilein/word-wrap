@@ -11,6 +11,17 @@ class WordWrapper
         $this->validateLineLength();
     }
 
+    private function validateLineLength()
+    {
+        if (!is_numeric($this->lineLength)) {
+            throw new \InvalidArgumentException("Invalid line length " . $this->lineLength);
+        }
+
+        if ($this->lineLength < 0) {
+            throw new \InvalidArgumentException("Negative line length " . $this->lineLength);
+        }
+    }
+
     public function wrap($text)
     {
         $text = trim($text);
@@ -24,15 +35,6 @@ class WordWrapper
         return trim($firstLine) . "\n" . $followingLines;
     }
 
-    private function validateLineLength()
-    {
-        if (!is_numeric($this->lineLength)) {
-            throw new \InvalidArgumentException("Invalid line length " . $this->lineLength);
-        } elseif ($this->lineLength < 0) {
-            throw new \InvalidArgumentException("Negative line length " . $this->lineLength);
-        }
-    }
-
     private function fitsIntoLine($text)
     {
         return strlen($text) <= $this->lineLength;
@@ -41,16 +43,21 @@ class WordWrapper
     private function splitFirstLine($text)
     {
         $firstLine = substr($text, 0, $this->lineLength);
-        $spacePos = strrpos($firstLine, ' ');
-        $containsSpace = $spacePos !== false;
+        $lastSpacePosInLine = strrpos($firstLine, ' ');
+        $containsSpace = $lastSpacePosInLine !== false;
 
         if ($containsSpace) {
-            $firstLine = substr($text, 0, $spacePos);
-            $remainingText = substr($text, $spacePos + 1);
-        } else {
-            $remainingText = substr($text, $this->lineLength);
+            return $this->splitAt($text, $lastSpacePosInLine);
         }
 
-        return array($firstLine, $remainingText);
+        return $this->splitAt($text, $this->lineLength);
+    }
+
+    private function splitAt($text, $position)
+    {
+        $left = substr($text, 0, $position);
+        $right = substr($text, $position);
+
+        return [$left, $right];
     }
 }
